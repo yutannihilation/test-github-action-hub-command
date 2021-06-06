@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - main
+
+name: create pull request
+
+jobs:
+  pr:
+    name: pr
+    runs-on: ubuntu-latest
+    steps:
+      - name: list
+        run: hub issues list
+    
