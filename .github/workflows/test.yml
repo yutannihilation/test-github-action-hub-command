@@ -11,8 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: commit
+        run: |
+          date >> README.md
+          git switch -c "pr-$(date +%s)"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add README.md
+          git commit -m "Update README"
       
-      - name: list
-        run: hub issue
+      - name: pr
+        run: hub pull-request --base main --push --message "test"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
