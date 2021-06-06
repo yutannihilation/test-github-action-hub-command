@@ -7,9 +7,10 @@ name: create pull request
 
 jobs:
   pr:
-    name: pr
+    name: Create Pull Request
     runs-on: ubuntu-latest
     steps:
       - name: list
         run: hub issue
-    
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
